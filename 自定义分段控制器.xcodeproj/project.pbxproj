@@ -15,6 +15,7 @@
 		CFA2061C2005F458003AEB15 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA2061B2005F458003AEB15 /* main.m */; };
 		CFA206262005F459003AEB15 /* ________Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA206252005F459003AEB15 /* ________Tests.m */; };
 		CFA206312005F459003AEB15 /* ________UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA206302005F459003AEB15 /* ________UITests.m */; };
+		CFA206402005FCDF003AEB15 /* YYJTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA2063F2005FCDF003AEB15 /* YYJTopView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,8 @@
 		CFA2062C2005F459003AEB15 /* 自定义分段控制器UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "自定义分段控制器UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFA206302005F459003AEB15 /* ________UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "________UITests.m"; sourceTree = "<group>"; };
 		CFA206322005F459003AEB15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CFA2063E2005FCDF003AEB15 /* YYJTopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYJTopView.h; sourceTree = "<group>"; };
+		CFA2063F2005FCDF003AEB15 /* YYJTopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYJTopView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +84,8 @@
 		CFA206002005F458003AEB15 = {
 			isa = PBXGroup;
 			children = (
+				CFA2063E2005FCDF003AEB15 /* YYJTopView.h */,
+				CFA2063F2005FCDF003AEB15 /* YYJTopView.m */,
 				CFA2060B2005F458003AEB15 /* 自定义分段控制器 */,
 				CFA206242005F459003AEB15 /* 自定义分段控制器Tests */,
 				CFA2062F2005F459003AEB15 /* 自定义分段控制器UITests */,
@@ -266,6 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CFA206112005F458003AEB15 /* ViewController.m in Sources */,
+				CFA206402005FCDF003AEB15 /* YYJTopView.m in Sources */,
 				CFA2061C2005F458003AEB15 /* main.m in Sources */,
 				CFA2060E2005F458003AEB15 /* AppDelegate.m in Sources */,
 			);

@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "YYJTopView.h"
 
 @interface ViewController ()
 
@@ -16,14 +17,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    NSArray *array = @[@"首页",@"消息",@"商城",@"我"];
+    
+    YYJTopView *topView = [[YYJTopView alloc] initWithFrame:CGRectMake(0, 200, self.view.frame.size.width, 30)];
+    topView.titleArray = array;
+    [self.view addSubview:topView];
 }
 
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 
 @end
