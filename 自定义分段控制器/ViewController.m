@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "YYJTopView.h"
+#import "YYJTopScrollView.h"
 
 @interface ViewController ()
 
@@ -20,9 +20,9 @@
     
     NSArray *array = @[@"首页",@"消息",@"商城",@"我"];
     
-    YYJTopView *topView = [[YYJTopView alloc] initWithFrame:CGRectMake(0, 200, self.view.frame.size.width, 30)];
-    topView.titleArray = array;
-    [self.view addSubview:topView];
+    YYJTopScrollView *topScroll = [[YYJTopScrollView alloc] initWithFrame:CGRectMake(0, 200, self.view.frame.size.width, 30)];
+    topScroll.titleArray = array;
+    [self.view addSubview:topScroll];
 }
 
 
