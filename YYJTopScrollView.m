@@ -24,6 +24,7 @@
     if (self = [super initWithFrame:frame]) {
         self.showsVerticalScrollIndicator = NO;
         self.showsHorizontalScrollIndicator = NO;
+        self.bounces = NO;
     }
     return self;
 }
@@ -40,7 +41,7 @@
     [self addSubview:_indicatorView];
     
     // 初始化内部标题按钮
-    CGFloat buttonW = self.frame.size.width / titleArray.count;
+    CGFloat buttonX = 0;
     CGFloat buttonH = self.frame.size.height - _indicatorView.height;
     for (int i=0; i<titleArray.count; i++) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -50,8 +51,14 @@
         [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         // 设置点击时字体颜色
         [button setTitleColor:[UIColor redColor] forState:UIControlStateDisabled];
+        
+        // 计算内容的长度
+        CGFloat buttonW = [titleArray[i] boundingRectWithSize:CGSizeMake(MAXFLOAT, buttonH) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:20]} context:nil].size.width + 30;
+        
         // 设置按钮尺寸
-        [button setFrame:CGRectMake(buttonW * i, 0, buttonW, buttonH)];
+        [button setFrame:CGRectMake(buttonX , 0, buttonW, buttonH)];
+        buttonX += buttonW;
+        
         // 设置点击方法
         [button addTarget:self action:@selector(tap:) forControlEvents:UIControlEventTouchUpInside];
         // 记入标签
@@ -67,6 +74,10 @@
         }
         [self addSubview:button];
     }
+    
+    // 设置内容大小
+    CGFloat w = CGRectGetMaxX(self.subviews.lastObject.frame);
+    self.contentSize = CGSizeMake(w, 0);
 }
 
 #pragma mark ~~~~~~~~~~ 点击方法 ~~~~~~~~~~
@@ -84,6 +95,31 @@
     [UIView animateWithDuration:0.5 animations:^{
         _indicatorView.centerx = button.centerx;
     }];
+    
+    // 代理
+    if ([self.YYJTopScrollViewDelegate respondsToSelector:@selector(tap:)]) {
+        [self.YYJTopScrollViewDelegate tap:button.tag];
+    }
+    
+    // 标题居中
+    [self setupButtonCenter:button];
 }
+
+- (void)setupButtonCenter:(UIButton *)button {
+    // 居中时偏移量为0
+    CGFloat offset = button.centerx - self.centerx;
+    // 如果按钮在左边，则不做操作
+    if (offset < 0) offset = 0;
+    // 如果按钮在右边，则偏移
+    // 获取最大的偏移量（最大偏移量=内容宽-屏幕宽）
+    CGFloat maxOffset = self.contentSize.width - self.width;
+    // 如果最大偏移量还小于0（内容数组不够充满屏幕）则赋值0
+    if (maxOffset < 0) maxOffset = 0;
+    // 如果按钮偏移量大于最大偏移量，则等于最大偏移量（相当于不做操作）
+    if (offset > maxOffset) offset = maxOffset;
+    // 实现动态偏移
+    [self setContentOffset:CGPointMake(offset, 0) animated:YES];
+}
+
 
 @end

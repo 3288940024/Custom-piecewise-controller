@@ -8,9 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YYJTopScrollView : UIScrollView
+@protocol YYJTopScrollViewDelegate <NSObject>
+// 按钮点击方法(index:按钮索引)
+- (void)tap:(NSInteger)index;
+@end
 
+@interface YYJTopScrollView : UIScrollView
 /** 存放标题的数组 */
 @property (nonatomic,strong) NSArray *titleArray;
+/** 代理 */
+@property (nonatomic,weak) id <YYJTopScrollViewDelegate>YYJTopScrollViewDelegate;
+
+// 按钮点击方法
+- (void)tap:(UIButton *)button;
 
 @end
